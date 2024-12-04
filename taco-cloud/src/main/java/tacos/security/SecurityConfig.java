@@ -33,14 +33,6 @@ public class SecurityConfig {
 	}
 	
 	@Bean
-	public UserDetailsService users() {
-		JdbcUserDetailsManager detailsManager = new JdbcUserDetailsManager(dataSource);
-		detailsManager.setUsersByUsernameQuery("select username, password, enabled from users where username = ?");
-		detailsManager.setAuthoritiesByUsernameQuery("select username, authority from authorities where username = ?");
-		return detailsManager;
-	}
-	
-	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new NoEncodingPasswordEncoder();
 	}
