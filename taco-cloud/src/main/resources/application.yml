@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: taco-cloud
+
+taco:
+  orders:
+    page-size: 10
