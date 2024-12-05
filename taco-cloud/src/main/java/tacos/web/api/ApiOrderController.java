@@ -1,0 +1,37 @@
+package tacos.web.api;
+
+import java.util.Optional;
+
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import tacos.Order;
+import tacos.data.OrderRepository;
+
+@RestController
+@RequestMapping("/order")
+public class ApiOrderController {
+	
+	private OrderRepository repo;
+	
+	public ApiOrderController(OrderRepository repo) {
+		this.repo = repo;
+	}
+
+	@PatchMapping(path = "/{orderId}", consumes = "application/json")
+	public Order patchOrder(@PathVariable("orderId") Long orderId, @RequestBody Order patch) {
+		Order order = repo.findById(orderId).get();
+		if (patch.getDeliveryName() != null) order.setDeliveryName(patch.getDeliveryName());
+		if (patch.getDeliveryStreet() != null) order.setDeliveryStreet(patch.getDeliveryStreet());
+		if (patch.getDeliveryCity() != null) order.setDeliveryCity(patch.getDeliveryCity());
+		if (patch.getDeliveryState() != null) order.setDeliveryState(patch.getDeliveryState());
+		if (patch.getDeliveryZip() != null) order.setDeliveryZip(patch.getDeliveryZip());
+		if (patch.getCcNumber() != null) order.setCcNumber(patch.getCcNumber());
+		if (patch.getCcExpiration() != null) order.setCcExpiration(patch.getCcExpiration());
+		if (patch.getCcCVV() != null) order.setCcCVV(patch.getCcCVV());
+		return repo.save(order);
+	}
+}
