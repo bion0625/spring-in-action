@@ -1,7 +1,9 @@
 spring:
   application:
     name: taco-cloud
-
+  data:
+    rest:
+     base-path: /api		
 taco:
   orders:
     page-size: 10
