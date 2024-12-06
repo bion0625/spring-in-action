@@ -1,7 +1,13 @@
 package tacos.web.api;
 
+import java.util.Iterator;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.Link;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -29,9 +35,22 @@ public class ApiDesignTacoController {
 	}
 	
 	@GetMapping("/recent")
-	public Iterable<Taco> recentTacos() {
+	public CollectionModel<EntityModel<Taco>> recentTacos() {
 		PageRequest page = PageRequest.of(0, 12, Sort.by("createdAt").descending());
-		return tacoRepo.findAll(page).getContent();
+
+		Iterable<Taco> tacos = tacoRepo.findAll(page).getContent();
+		CollectionModel<EntityModel<Taco>> recentCollectionModel = CollectionModel.wrap(tacos);
+		
+		recentCollectionModel.add(
+//				Link.of("http://localhost:8080/design/recent", "recents"));
+
+//				WebMvcLinkBuilder.linkTo(ApiDesignTacoController.class)
+//				.slash("recent")
+//				.withRel("recents"));
+				
+				WebMvcLinkBuilder.linkTo(WebMvcLinkBuilder.methodOn(ApiDesignTacoController.class).recentTacos())
+				.withRel("recents"));
+		return recentCollectionModel;
 	}
 	
 	@GetMapping("/{id}")
