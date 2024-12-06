@@ -21,7 +21,7 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		return http
-				.csrf(csrf -> csrf.ignoringRequestMatchers("/h2-console/**"))
+				.csrf(csrf -> csrf.disable())
 				.headers(header -> header.frameOptions(f -> f.disable()))
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/design", "/orders").hasRole("USER")
