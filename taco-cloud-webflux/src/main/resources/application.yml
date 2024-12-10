@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: taco-cloud-webflux
+  data:
+    rest:
+     base-path: /api		
+  artemis:
+    broker-url: tcp://artemis.tacocloud.com
+    user: tacoweb
+    password: 13tm31n
+  jms:
+    template:
+      default-destination: tacocloud.order.queue
+taco:
+  orders:
+    page-size: 10
