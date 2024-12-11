@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import tacos.Taco;
 import tacos.data.TacoRepository;
 
@@ -41,7 +42,7 @@ public class ApiDesignTacoController {
 	
 	@PostMapping(consumes = "application/json")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Taco postTaco(@RequestBody Taco taco) {
-		return tacoRepo.save(taco);
+	public Mono<Taco> postTaco(@RequestBody Mono<Taco> taco) {
+		return taco.map(t -> tacoRepo.save(t));
 	}
 }

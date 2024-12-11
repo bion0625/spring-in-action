@@ -1,5 +1,6 @@
 package tacos.web.api;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.io.IOException;
@@ -8,8 +9,10 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import reactor.core.publisher.Mono;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Taco;
@@ -51,7 +54,7 @@ class DesignTacoControllerTest {
 		.jsonPath("$[12]").doesNotExist();
 	}
 	
-	private Taco testTaco(long nubmer) {
+	private Taco testTaco(Long nubmer) {
 		Taco taco = new Taco();
 		taco.setId(nubmer);
 		taco.setName("Taco " + nubmer);
@@ -60,6 +63,28 @@ class DesignTacoControllerTest {
 		ingredients.add(new Ingredient("INGB", "Ingredient B", Type.PROTEIN));
 		taco.setIngredients(ingredients);
 		return taco;
+	}
+	
+	@Test
+	void shouldSaveTaco() {
+		TacoRepository tacoRepo = Mockito.mock(TacoRepository.class);
+		Mono<Taco> unsavedTaco = Mono.just(testTaco(null));
+		Taco savedTaco = testTaco(null);
+		savedTaco.setId(1L);
+		
+		when(tacoRepo.save(any())).thenReturn(savedTaco);
+		
+		WebTestClient testClient = WebTestClient.bindToController(
+				new ApiDesignTacoController(tacoRepo)).build();
+		
+		testClient.post()
+		.uri("/design")
+		.contentType(MediaType.APPLICATION_JSON)
+		.body(unsavedTaco, Taco.class)
+		.exchange()
+		.expectStatus().isCreated()
+		.expectBody(Taco.class)
+		.isEqualTo(savedTaco);
 	}
 
 }
