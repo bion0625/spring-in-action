@@ -1,4 +1,4 @@
-package tacos.web.api;
+package tacos;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
@@ -17,6 +17,7 @@ import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Taco;
 import tacos.data.TacoRepository;
+import tacos.web.api.ApiDesignTacoController;
 
 class DesignTacoControllerTest {
 
