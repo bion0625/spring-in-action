@@ -35,19 +35,26 @@ public class Get {
 		Mono<Ingredient> ingredient = webClient
 		.get()
 		.uri("/api/ingredients/{id}", ingredientId)
-		.retrieve()
-		.bodyToMono(Ingredient.class);
+//		.retrieve()
+//		.bodyToMono(Ingredient.class);
+		.exchangeToMono(cr -> {
+			log.info("cr: " + cr);
+			if (cr.headers().header("X_UNVAILABLE").contains("true")) {
+				return Mono.empty();
+			}
+			return cr.bodyToMono(Ingredient.class);
+		});
 		
-//		ingredient.doOnNext(i -> log.info(ingredientId + ": " + i)).block();
-		ingredient
-		.timeout(Duration.ofSeconds(1))
-		.subscribe(
-				i -> {
-					log.info(ingredientId + ": " + i);
-					}, 
-				e -> {
-					log.info(ingredientId + " error : " + e);
-					});
+		ingredient.doOnNext(i -> log.info(ingredientId + ": " + i)).block();
+//		ingredient
+//		.timeout(Duration.ofSeconds(1))
+//		.subscribe(
+//				i -> {
+//					log.info(ingredientId + ": " + i);
+//					}, 
+//				e -> {
+//					log.info(ingredientId + " error : " + e);
+//					});
 	}
 	
 	public void getAll() {
