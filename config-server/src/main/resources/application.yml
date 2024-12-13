@@ -9,3 +9,5 @@ spring:
         git:
           uri: http://localhost:3000/test/config
 #          uri: https://github.com/habuma/tacocloud-config
+encrypt:
+  key: s3cr2t
