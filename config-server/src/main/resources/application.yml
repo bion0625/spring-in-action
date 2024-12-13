@@ -7,4 +7,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/habuma/tacocloud-config
+          uri: http://localhost:3000/test/config
+#          uri: https://github.com/habuma/tacocloud-config

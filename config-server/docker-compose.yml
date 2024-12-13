@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  gogs:
+    image: gogs/gogs:latest
+    container_name: gogs
+    restart: always
+    ports:
+      - "3000:3000"  # Gogs 웹 UI
+      - "10022:22"   # Git SSH
+    volumes:
+      - ./gogs:/data # Gogs 데이터 저장 경로
+    environment:
+      - USER_UID=1000 # UID 설정
+      - USER_GID=1000 # GID 설정
