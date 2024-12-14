@@ -14,3 +14,17 @@ spring:
 taco:
   orders:
     page-size: 10
+management:
+  endpoints:
+    web:
+      base-path: /management
+      exposure:
+        include:
+         - '*'
+        exclude:
+        - threaddump
+        - heapdump
+#        - health
+#        - info
+#        - beans
+#        - conditions
