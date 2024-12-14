@@ -18,6 +18,8 @@ management:
   info:
     env:
       enabled: true
+    git:
+      mode: full
   endpoints:
     web:
       base-path: /management
