@@ -30,6 +30,8 @@ management:
   endpoint:
     health:
       show-details: always
+    env:
+      show-values: always
 info:
   contact:
     email: support@tacocloud.com
