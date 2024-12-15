@@ -1,5 +1,19 @@
-2024/12/13 02:08:16 [ INFO] Gogs 0.14.0+dev
-2024/12/13 02:08:17 [ INFO] Git config user.name set to Gogs
-2024/12/13 02:08:17 [ INFO] Git config user.email set to gogs@fake.local
-2024/12/13 02:08:17 [ INFO] Run mode: Production
-2024/12/13 02:08:17 [ INFO] First-time run install finished!
+2024/12/15 06:49:47 [ INFO] Gogs 0.14.0+dev
+2024/12/15 06:49:48 [ INFO] Run mode: Production
+2024/12/15 06:49:48 [ INFO] Available on http://localhost:3000/
+2024/12/15 06:51:08 [ERROR] [...gs/internal/route/repo/editor.go:282 editFilePost()] Failed to update repo file: git push origin master: exit status 1 - remote: env: can't execute 'bash        remote: ': No such file or directory        
+To /data/git/gogs-repositories/test/config.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to '/data/git/gogs-repositories/test/config.git'
+2024/12/15 06:53:13 [ERROR] [...gs/internal/route/repo/editor.go:282 editFilePost()] Failed to update repo file: git push origin master: exit status 1 - remote: env: can't execute 'bash        remote: ': No such file or directory        
+To /data/git/gogs-repositories/test/config.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to '/data/git/gogs-repositories/test/config.git'
+2024/12/15 06:53:31 [ERROR] [...gs/internal/route/repo/editor.go:282 editFilePost()] Failed to update repo file: git push origin master: exit status 1 - remote: env: can't execute 'bash        remote: ': No such file or directory        
+To /data/git/gogs-repositories/test/config.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to '/data/git/gogs-repositories/test/config.git'
+2024/12/15 06:54:02 [ERROR] [...gs/internal/route/repo/editor.go:282 editFilePost()] Failed to update repo file: git push origin master: exit status 1 - remote: env: can't execute 'bash        remote: ': No such file or directory        
+To /data/git/gogs-repositories/test/config.git
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to '/data/git/gogs-repositories/test/config.git'

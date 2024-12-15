@@ -11,6 +11,11 @@ spring:
   jms:
     template:
       default-destination: tacocloud.order.queue
+  boot:
+    admin:
+      client:
+        url:
+        - http://localhost:9090
 taco:
   orders:
     page-size: 10
@@ -38,3 +43,5 @@ info:
   contact:
     email: support@tacocloud.com
     phone: 822-625-6831
+server:
+  port: 8081
