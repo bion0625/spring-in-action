@@ -25,6 +25,7 @@ public class SecurityConfig {
 				.headers(header -> header.frameOptions(f -> f.disable()))
 		.authorizeHttpRequests(auth -> auth
 				.requestMatchers("/design", "/orders").hasRole("USER")
+				.requestMatchers("/management/**").hasRole("USER")
 				.anyRequest().permitAll())
 		.formLogin(f -> f.loginPage("/login").defaultSuccessUrl("/design", true))
 		.logout(l -> l.logoutSuccessUrl("/"))
