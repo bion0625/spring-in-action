@@ -1,8 +1,14 @@
 spring:
   application:
     name: admin-server
+  security:
+    user:
+      name: admin
+      password: admin
+  boot:
+    admin:
+      instance-auth:
+        default-user-name: admin
+        default-password: admin
 server:
   port: 9090
-eureka:
-  client:
-    register-with-eureka: false

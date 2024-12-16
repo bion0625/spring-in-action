@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: admin-server-eureka
+  security:
+    user:
+      name: admin
+      password: admin
+server:
+  port: 9091
+eureka:
+  client:
+    register-with-eureka: false
